@@ -18,6 +18,14 @@
     align-items: center;
 }
 
+.text-green {
+    color: green;
+}
+
+.text-red {
+    color: red;
+}
+
 
 .fade-enter  {
     opacity: 0;

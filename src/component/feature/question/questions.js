@@ -109,7 +109,7 @@ export default function Questions() {
         });
 
         text += "\n";
-        text += "quizdle.com";
+        text += "quizdle.fr";
 
         return text;
     };
@@ -157,7 +157,7 @@ export default function Questions() {
     }
 
     if (showResult) {
-        let end = moment().endOf('day').toDate()
+        let end = moment().endOf("day").toDate();
         content = showQuestion ? (
             <div>
                 <h2>
@@ -177,14 +177,19 @@ export default function Questions() {
                                         responseGivenByUser[indexQuestion] !==
                                             question.correctAnswer
                                     ) {
-                                        return <li key={indexResponse}> {response} 🟥 </li>;
+                                        return (
+                                            <li className="bold text-red" key={indexResponse}>
+                                                {" "}
+                                                {response}{" "}
+                                            </li>
+                                        );
                                     }
 
                                     if (question.correctAnswer === response) {
                                         return (
-                                            <li className="bold" key={indexResponse}>
+                                            <li className="bold text-green" key={indexResponse}>
                                                 {" "}
-                                                {response} 🟩{" "}
+                                                {response}
                                             </li>
                                         );
                                     }
@@ -202,7 +207,7 @@ export default function Questions() {
                     </CopyToClipboard>
                 </div>
 
-                {clipboard ? <span style={{ color: "red" }}>Copied.</span> : null}
+                <div className="flex justify-center">{clipboard ? <span>C'est copié ! 😉 </span> : null}</div>
 
                 <div className="flex column align-center">
                     <h3>Prochain quiz dans : </h3>

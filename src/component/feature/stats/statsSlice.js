@@ -9,12 +9,12 @@ const initialState = {
 }
 
 export const fetchStats = createAsyncThunk('quiz/fetchStats', async () => {
-  const response = await axios.get('http://localhost:4000/api/stats')
+  const response = await axios.get(`${process.env.REACT_APP_API}/api/stats`)
   return response.data
 });
 
 export const postStats = createAsyncThunk('quiz/postStats', async ({rank}) => {
-    const response = await axios.post('http://localhost:4000/api/stats',{rank : rank})
+    const response = await axios.post(`${process.env.REACT_APP_API}/api/stats`,{rank : rank})
     return response.data
   })
 
