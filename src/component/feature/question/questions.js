@@ -128,6 +128,9 @@ export default function Questions() {
                 <div>
                     {showQuestion ? (
                         <React.Fragment>
+                            <div className="flex justify-center mb-10-px">
+                                Question n°{index + 1}/{questions.question.length}
+                            </div>
                             <RadioGroup
                                 value={value}
                                 onChange={setValue}

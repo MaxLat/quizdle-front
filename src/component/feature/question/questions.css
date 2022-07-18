@@ -26,6 +26,10 @@
     color: red;
 }
 
+.mb-10-px {
+    margin-bottom: 10px;
+}
+
 
 .fade-enter  {
     opacity: 0;
