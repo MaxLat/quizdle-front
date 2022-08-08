@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Paper, Button, RadioGroup, Radio } from "@mantine/core";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuestions, questionsFromStorage } from "./questionsSlice";
@@ -24,12 +24,24 @@ export default function Questions() {
     const [clipboard, setClipboard] = useState(false);
     const [saveStats, setSaveStats] = useState(false);
 
+    const count = useCallback(() => {
+        let count = 0;
+
+        questions.question.forEach((question, index) => {
+            if (question.correctAnswer === responseGivenByUser[index]) {
+                count++;
+            }
+        });
+
+        return count;
+    },[questions,responseGivenByUser]);
+
     useEffect(() => {
         if (saveStats) {
             dispatch(postStats({ rank: count() }));
             setSaveStats(false);
         }
-    }, [saveStats, dispatch]);
+    }, [saveStats, dispatch,count]);
 
     useEffect(() => {
         if (questions && responseGivenByUser.length === questions.question.length) {
@@ -85,17 +97,7 @@ export default function Questions() {
         setShowAnimation(false);
     };
 
-    const count = () => {
-        let count = 0;
-
-        questions.question.forEach((question, index) => {
-            if (question.correctAnswer === responseGivenByUser[index]) {
-                count++;
-            }
-        });
-
-        return count;
-    };
+    
 
     const getClipboardText = () => {
         let text = "Quizdle du " + moment(new Date()).format("DD/MM/YYYY") + "\n";
