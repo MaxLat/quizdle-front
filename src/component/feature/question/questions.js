@@ -9,6 +9,7 @@ import Countdown from "react-countdown";
 import { postStats } from "../stats/statsSlice";
 import Stats from "../stats/stats";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Ads from "../ads/ads";
 
 export default function Questions() {
     const dispatch = useDispatch();
@@ -218,6 +219,8 @@ export default function Questions() {
                     <h3>Prochain quiz dans : </h3>
                     <Countdown date={end}></Countdown>
                 </div>
+
+                <Ads currentPath='quiz'></Ads>
             </div>
         ) : (
             <div></div>
